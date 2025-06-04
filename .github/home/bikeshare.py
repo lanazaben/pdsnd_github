@@ -72,6 +72,7 @@ def get_month():
     months = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
     return get_input('Please enter a month (January to June) or "all": ', months)
 
+# Ask for day from user
 def get_day():
     days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
     return get_input('Please enter a day of the week or "all": ', days)
@@ -93,6 +94,7 @@ def display_raw_data(df):
         else:
             print("Invalid input. Please enter 'yes' or 'no'.")
 
+# Main script that will be run
 def preprocess_datetime(df):
     df['Start Time'] = pd.to_datetime(df['Start Time'])
     df['month'] = df['Start Time'].dt.month
