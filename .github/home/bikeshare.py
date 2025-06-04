@@ -12,10 +12,7 @@ CITY_DATA = {
 # Filter data according to how it's specified
 def load_data(city, month, day):
     df = pd.read_csv(CITY_DATA[city])
-    df['Start Time'] = pd.to_datetime(df['Start Time'])
-    df['month'] = df['Start Time'].dt.month
-    df['day_of_week'] = df['Start Time'].dt.day_name()
-    df['hour'] = df['Start Time'].dt.hour
+    df = preprocess_datetime(df)
 
     if month != 'all':
         months = ['january', 'february', 'march', 'april', 'may', 'june']
@@ -26,6 +23,7 @@ def load_data(city, month, day):
         df = df[df['day_of_week'] == day.title()]
     
     return df
+
 
 # Popular times of travel
 def time_stats(df):
@@ -109,6 +107,14 @@ def display_raw_data(df):
             break
         else:
             print("Invalid input. Please enter 'yes' or 'no'.")
+
+def preprocess_datetime(df):
+    df['Start Time'] = pd.to_datetime(df['Start Time'])
+    df['month'] = df['Start Time'].dt.month
+    df['day_of_week'] = df['Start Time'].dt.day_name()
+    df['hour'] = df['Start Time'].dt.hour
+    return df
+
 
 # Main script
 def main():
