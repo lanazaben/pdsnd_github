@@ -58,38 +58,23 @@ def user_stats(df):
         print('\nEarliest Year:', int(df['Birth Year'].min()))
         print('Most Recent Year:', int(df['Birth Year'].max()))
         print('Most Common Year:', int(df['Birth Year'].mode()[0]))
-
-# Ask for city
+def get_input(prompt, valid_values):
+    while True:
+        user_input = input(prompt).strip().lower()
+        if user_input in valid_values:
+            return user_input
+        else:
+            print(f"Invalid input. Please enter one of: {', '.join(valid_values)}.")
 def get_city():
-    """Asks the user for a city and validates the input."""
-    while True:
-        city = input('Please enter a city (Chicago, New York City, Washington): ').strip().lower()
-        if city in CITY_DATA:
-            return city
-        else:
-            print("Invalid input. Please enter either Chicago, New York City, or Washington.")
+    return get_input('Please enter a city (Chicago, New York City, Washington): ', CITY_DATA.keys())
 
-# Ask for month
 def get_month():
-    """Asks the user for a month and validates the input."""
     months = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
-    while True:
-        month = input('Please enter a month (January to June) or "all": ').strip().lower()
-        if month in months:
-            return month
-        else:
-            print("Invalid input. Please enter a valid month between January and June, or 'all'.")
+    return get_input('Please enter a month (January to June) or "all": ', months)
 
-# Ask for day
 def get_day():
-    """Asks the user for a day of the week and validates the input."""
     days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
-    while True:
-        day = input('Please enter a day of the week or "all": ').strip().lower()
-        if day in days:
-            return day
-        else:
-            print("Invalid input. Please enter a valid day of the week or 'all'.")
+    return get_input('Please enter a day of the week or "all": ', days)
 
 # Display raw data
 def display_raw_data(df):
@@ -114,6 +99,8 @@ def preprocess_datetime(df):
     df['day_of_week'] = df['Start Time'].dt.day_name()
     df['hour'] = df['Start Time'].dt.hour
     return df
+
+
 
 
 # Main script
