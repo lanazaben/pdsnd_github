@@ -82,7 +82,7 @@ def get_month():
         else:
             print("Invalid input. Please enter a valid month between January and June, or 'all'.")
 
-# Ask for day
+# Ask for day from user
 def get_day():
     """Asks the user for a day of the week and validates the input."""
     days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
@@ -110,7 +110,7 @@ def display_raw_data(df):
         else:
             print("Invalid input. Please enter 'yes' or 'no'.")
 
-# Main script
+# Main script that will be run
 def main():
     """Main function running the bikeshare program."""
     print('Hello! Let\'s explore some US bikeshare data!')
