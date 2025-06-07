@@ -1,0 +1,3 @@
+# Exclude data directories and files
+data/
+*.csv
